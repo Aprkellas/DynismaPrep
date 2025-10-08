@@ -1,0 +1,8 @@
+{"timestamp": 0.000, "accel_x": 0.02, "accel_y": -0.01, "accel_z": 9.81, "gyro_x": 0.001, "gyro_y": -0.002, "gyro_z": 0.000, "motor_temp": 34.5, "actuator_pos": [0.0, 0.1, -0.05, 0.03, 0.0, -0.02]}
+{"timestamp": 0.010, "accel_x": 0.03, "accel_y": -0.02, "accel_z": 9.80, "gyro_x": 0.002, "gyro_y": -0.003, "gyro_z": 0.001, "motor_temp": 34.7, "actuator_pos": [0.01, 0.12, -0.04, 0.03, 0.01, -0.01]}
+{"timestamp": 0.020, "accel_x": 0.05, "accel_y": -0.03, "accel_z": 9.79, "gyro_x": 0.003, "gyro_y": -0.003, "gyro_z": 0.001, "motor_temp": 34.9, "actuator_pos": [0.02, 0.14, -0.03, 0.04, 0.01, -0.01]}
+{"timestamp": 0.030, "accel_x": 0.08, "accel_y": -0.05, "accel_z": 9.78, "gyro_x": 0.004, "gyro_y": -0.004, "gyro_z": 0.002, "motor_temp": 35.2, "actuator_pos": [0.03, 0.15, -0.02, 0.05, 0.02, 0.00]}
+{"timestamp": 0.040, "accel_x": 0.10, "accel_y": -0.06, "accel_z": 9.77, "gyro_x": 0.006, "gyro_y": -0.005, "gyro_z": 0.003, "motor_temp": 35.5, "actuator_pos": [0.04, 0.17, -0.01, 0.06, 0.02, 0.00]}
+{"timestamp": 0.050, "accel_x": 0.12, "accel_y": -0.08, "accel_z": 9.75, "gyro_x": 0.008, "gyro_y": -0.006, "gyro_z": 0.004, "motor_temp": 35.8, "actuator_pos": [0.05, 0.18, 0.00, 0.07, 0.03, 0.01]}
+{"timestamp": 0.060, "accel_x": 0.15, "accel_y": -0.10, "accel_z": 9.74, "gyro_x": 0.010, "gyro_y": -0.007, "gyro_z": 0.005, "motor_temp": 36.0, "actuator_pos": [0.06, 0.19, 0.01, 0.08, 0.03, 0.02]}
+{"timestamp": 0.070, "accel_x": 0.17, "accel_y": -0.12, "accel_z": 9.73, "gyro_x": 0.011, "gyro_y": -0.008, "gyro_z": 0.006, "motor_temp": 36.3, "actuator_pos": [0.07, 0.20, 0.02, 0.08, 0.03, 0.02]}
