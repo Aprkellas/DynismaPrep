@@ -4,6 +4,7 @@ import pandas as pd
 
 from arteficialtimer import ArteficialTimer
 from ringbuffer import RingBuffer
+from analysis import Analyser
 
 class Ingest:
     def __init__(self, file: str):
@@ -18,6 +19,7 @@ class Ingest:
         self.data = self.data.sort_values("timestamp", kind="mergesort").reset_index(drop=True)
         self.ringbuffer = RingBuffer(self.data)
         self.running = True
+
     def validate_file(self):
         if not isinstance(self.file, str):
             raise ValueError("File path must be a string.")
@@ -41,7 +43,10 @@ class Ingest:
                 if self.timer.time != current_time:
                     current_time = self.timer.time
                     current_data = self.ringbuffer.get_data(current_time)
+                    acceleration = Analyser.analyze(current_data)
                     print(current_data)
+                    
+
         except KeyboardInterrupt:
             pass
         finally:
