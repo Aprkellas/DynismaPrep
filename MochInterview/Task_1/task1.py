@@ -1,6 +1,4 @@
-
-
-from ast import List
+from typing import List
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -30,6 +28,19 @@ class Ingest:
             gyro_y=data["gyro_y"],
             gyro_z=data["gyro_z"],
         ) 
+
+        check_data = all([
+            series.timestamp is not None,
+            series.accel_x is not None,
+            series.accel_y is not None,
+            series.accel_z is not None,
+            series.gyro_x is not None,
+            series.gyro_y is not None,
+            series.gyro_z is not None,
+        ])
+        if not check_data:
+            return False
+        
         if(self.add_series(series)):
             if (self.compute_moving_average(series.timestamp)):
                 return True
