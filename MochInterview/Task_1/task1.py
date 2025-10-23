@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List
 from dataclasses import dataclass
 from datetime import datetime
@@ -13,60 +14,26 @@ class TimeSeries:
     gyro_z: float
 
 class Ingest:
-    def __init__(self, buffer: int = 10):
-        self.series: dict[datetime, TimeSeries] = []
-        self.moving_averages: dict[datetime, float] = []
-        self.buffer = buffer
+    def __init__(self, buffer_size: int = 10):
+        self.series: deque[TimeSeries] = deque(maxlen=buffer_size)
+        self.moving_average: float = 0
+        self.buffer = buffer_size
 
     def ingest(self, data: dict) -> bool:
-        series = TimeSeries(
-            timestamp=data["timestamp"],
-            accel_x=data["accel_x"],
-            accel_y=data["accel_y"],
-            accel_z=data["accel_z"],
-            gyro_x=data["gyro_x"],
-            gyro_y=data["gyro_y"],
-            gyro_z=data["gyro_z"],
-        ) 
-
-        check_data = all([
-            series.timestamp is not None,
-            series.accel_x is not None,
-            series.accel_y is not None,
-            series.accel_z is not None,
-            series.gyro_x is not None,
-            series.gyro_y is not None,
-            series.gyro_z is not None,
-        ])
-        if not check_data:
-            return False
-        
-        if(self.add_series(series)):
-            if (self.compute_moving_average(series.timestamp)):
-                return True
-        return False
-    
-    def add_series(self, series: TimeSeries) -> bool:
         try:
-            self.series[series.timestamp] = series
-            if len(self.series) > self.buffer:
-                self.series.pop(next(iter(self.series)))
+            ts = TimeSeries(**data)
+            self.series.append(ts)
+            self.compute_moving_average()
             return True
         except:
-            return False
+          return False
 
-    def compute_moving_average(self, key: datetime) -> bool:
-        val = self.series[key]
-        if val is None:
-            return False
-        
-        total = (val.accel_x + val.accel_y + val.accel_z)
-        if (total == 0):
-            return False
-        
-        self.moving_averages[key] = total / 3
-        return True
+    def compute_moving_average(self) -> None:
+        total = 0
+        for v in self.series:
+            total += (v.accel_x + v.accel_y + v.accel_z) / 3
+        self.moving_average = total / self.series.count()
 
     def get_series(self) -> List[TimeSeries]:
-        return self.series
+        return list(self.series)
     
